@@ -1,0 +1,50 @@
+.wrap {
+  margin-bottom: 3.5rem;
+}
+
+.center {
+  text-align: center;
+}
+
+.label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 0.85rem;
+  color: var(--ink-3) !important; /* override .label utility class color */
+}
+
+.label--accent {
+  color: var(--accent) !important;
+}
+
+.line {
+  display: inline-block;
+  width: 24px;
+  height: 1px;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+.center .line { display: none; }
+
+.heading {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  font-weight: 400;   /* Instrument Serif is expressive at regular weight */
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.sub {
+  margin-top: 1rem;
+  font-size: 0.92rem;
+  color: var(--ink-2);
+  line-height: 1.7;
+  max-width: 520px;
+}
+.center .sub {
+  margin-left: auto;
+  margin-right: auto;
+}

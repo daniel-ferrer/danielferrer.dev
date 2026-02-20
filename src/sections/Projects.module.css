@@ -1,0 +1,167 @@
+/* ── Row labels ────────────────────────────────────────────── */
+.rowLabel {
+  font-family: var(--font-mono);
+  font-size: 0.67rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+.rowLabel::before {
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 1px;
+  background: var(--ink-4);
+  flex-shrink: 0;
+}
+
+/* ── Grid ──────────────────────────────────────────────────── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 2.5rem;
+}
+.grid:last-child { margin-bottom: 0; }
+
+/* WIP grid gets a slightly cooler background to signal "not done yet" */
+.gridWip {
+  background: rgba(21, 20, 18, 0.05);
+  border-style: dashed;
+  border-color: var(--border-med);
+}
+
+/* ── Card ──────────────────────────────────────────────────── */
+.card {
+  background: var(--bg-elevated);
+  transition: background var(--dur-fast);
+}
+.card:hover { background: var(--bg-subtle); }
+
+/* WIP cards — slightly washed out, signals in-progress state */
+.cardWip {
+  background: var(--bg);
+}
+.cardWip:hover { background: var(--bg-subtle); }
+
+.cardInner {
+  padding: 1.75rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* ── Card header ───────────────────────────────────────────── */
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.25rem;
+}
+
+.cardMeta {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.cardYear {
+  font-family: var(--font-mono);
+  font-size: 0.67rem;
+  color: var(--ink-4);
+  letter-spacing: 0.06em;
+}
+
+/* Status badges */
+.statusBadge {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--ink-4);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: var(--bg-wash);
+  border: 1px solid var(--border);
+  padding: 0.15rem 0.45rem;
+  border-radius: 3px;
+}
+
+.wipBadge {
+  color: var(--accent);
+  background: var(--accent-light);
+  border-color: rgba(26, 75, 219, 0.2);
+}
+
+/* ── Icon buttons ──────────────────────────────────────────── */
+.cardLink {
+  width: 30px; height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-3);
+  border-radius: 6px;
+  flex-shrink: 0;
+  transition: color var(--dur-fast), background var(--dur-fast), transform var(--dur-fast);
+}
+.card:hover .cardLink {
+  color: var(--accent);
+  background: var(--accent-light);
+}
+.cardLink:hover {
+  transform: translate(2px, -2px) !important;
+}
+
+.lockIcon {
+  width: 30px; height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-4);
+  border-radius: 6px;
+  flex-shrink: 0;
+  cursor: default;
+}
+
+/* ── Card content ──────────────────────────────────────────── */
+.cardName {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+.cardWip .cardName { color: var(--ink-2); }
+
+.cardDesc {
+  font-size: 0.85rem;
+  color: var(--ink-2);
+  line-height: 1.7;
+  font-weight: 300;
+  flex: 1;
+}
+.cardWip .cardDesc { color: var(--ink-3); }
+
+/* ── Card footer ───────────────────────────────────────────── */
+.cardFooter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+/* ── Responsive ────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .grid { grid-template-columns: 1fr; }
+}

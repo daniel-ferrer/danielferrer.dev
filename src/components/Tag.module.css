@@ -1,0 +1,31 @@
+.tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.67rem;
+  font-weight: 400;
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+  white-space: nowrap;
+  letter-spacing: 0.03em;
+}
+
+/* default — ink on wash */
+.default {
+  background: var(--bg-wash);
+  color: var(--ink-2);
+  border: 1px solid var(--border);
+}
+
+/* outlined */
+.outlined {
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid rgba(26, 75, 219, 0.3);
+}
+
+/* subtle */
+.subtle {
+  background: transparent;
+  color: var(--ink-3);
+  border: 1px solid var(--border);
+}
