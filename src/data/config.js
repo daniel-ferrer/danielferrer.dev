@@ -8,11 +8,11 @@
 export const config = {
 
   // ── Identity ──────────────────────────────────────────────
-  name:      'Daniel Ferrer',
-  initials:  'DF',
-  title:     'Software Engineer · SRE Product',
+  name:      'Daniel Ferrer-Sosa',
+  initials:  'DFS',
+  title:     'Product Reliability Engineer',
   location:  'San Antonio, TX',
-  email:     'ferrdan2506@hotmail.com',
+  email:     'danielferrersosa@hotmail.com',
   openToWork: false,
 
   // ── Hero ──────────────────────────────────────────────────
@@ -36,7 +36,7 @@ export const config = {
   // ── About ─────────────────────────────────────────────────
   about: {
     paragraphs: [
-      "I'm a Software Engineer with 4+ years in full-stack .NET development and 3+ years leading product-focused SRE efforts at Invoice Cloud. I operate at the intersection of software engineering, reliability, and product delivery — from assisting system design to triaging incident root causes to developer enablement via internal tooling.",
+      "I'm a Product Reliability Engineer with 4+ years in full-stack .NET development and 3+ years leading product-focused SRE efforts at Invoice Cloud. I operate at the intersection of software engineering, reliability, and product delivery — from assisting system design to triaging incident root causes to developer enablement via internal tooling.",
       "My philosophy: reliability is not something you bolt on after shipping. I partner with product engineering teams, influencing architecture with failure-mode analysis, graceful degradation patterns, and SLO-driven prioritization that keeps customer impact front and center.",
       "Outside of work, I'm building Fimsy, trying to teach my beagle Zoe to code (it's not going well), playing tons of golf, and perpetually tinkering with whatever side project has my attention this week.",
     ],
@@ -53,7 +53,7 @@ export const config = {
     {
       company: 'InvoiceCloud',
       url:     'https://www.invoicecloud.net',
-      role:    'Software Engineer (SRE – Product)',
+      role:    'Product Reliability Engineer',
       period:  'Dec 2021 — Present',
       type:    'Full-time · Remote',
       summary: 'Led a product-focused SRE team responsible for embedding reliability, scalability, and operability directly into customer-facing SaaS products. I own system design, incident response, observability architecture, and developer enablement — partnering closely with Product and Engineering to make reliability a first-class concern.',
