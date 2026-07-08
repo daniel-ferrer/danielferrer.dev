@@ -61,12 +61,15 @@ export const config = {
         'Influenced feature design with reliability-first architecture and failure-mode analysis, ensuring patterns like graceful degradation and fault isolation were built into services from day one.',
         'Led high-severity incident root cause analysis for core product domains, improving MTTR through automation, runbook standardization, and symptom-based alerting aligned to real customer impact.',
         'Resolved observability gaps across legacy projects during codebase modernization — building standardized metrics, logging, and distributed tracing practices across the product suite.',
-        'Designed and deployed a machine learning solution to auto-triage incoming support tickets, reducing manual routing overhead and improving response time at scale.',
+        'Built SRE-AI, an internal AI triage platform now the SRE org\'s default workflow for Development Support tickets — replacing multi-hour manual investigation with a reproducible, auditable process where every session emits a structured report, captured query trail, and assumption ledger.',
+        'Authored an 11-phase incident triage workflow that ingests a Jira ticket, auto-detects the owning SRE team, correlates against historical incidents and open engineering bugs, gathers evidence across Jira, Confluence, Azure DevOps, SQL Server, and New Relic, and produces a structured triage report plus downstream artifacts (engineering bug drafts, SA items, CSV reports) conforming to each board\'s template.',
+        'Wrote a .NET 10 MCP server exposing production-safe database access to AI agents — SELECT-only by construction, per-database row limits, query timeouts, and schema allowlists — so an AI can investigate live shards with no bypass path.',
+        'Designed a pluggable per-domain runbook architecture (Integrations, Payer, Biller, Payments) so each SRE team owns its own service classification, failure patterns, and escalation criteria; new domains onboard with a single PR.',
         'Reduced alert fatigue by improving signal quality and aligning alert policies to customer-impacting symptoms rather than system noise.',
         'Mentored SRE engineers on reliability best practices, setting technical direction, reviewing designs, and advocating for sustainable on-call culture across product engineering teams.',
         'Communicated reliability risks and engineering investments in business terms to leadership, customer teams, and stakeholders.',
       ],
-      stack: ['C#', 'ASP.NET Core', 'Python', 'Terraform', 'Azure', 'New Relic', 'SQL', 'Azure DevOps'],
+      stack: ['C#', 'ASP.NET Core', 'Python', 'Terraform', 'Azure', 'New Relic', 'SQL', 'Azure DevOps', 'Claude Code', 'MCP'],
     },
     {
       company: 'University of Texas at San Antonio',
@@ -149,7 +152,7 @@ export const config = {
     },
     {
       category: 'Practices',
-      items: ['Agile / Scrum', 'Sprint Management', 'Failure-Mode Analysis', 'Blameless Post-mortems', 'Code Review', 'Team Leadership'],
+      items: ['Agile / Scrum', 'Sprint Management', 'Failure-Mode Analysis', 'Blameless Post-mortems', 'Code Review', 'Team Leadership', 'AI-Assisted Triage', 'Multi-Agent Orchestration'],
     },
   ],
 
