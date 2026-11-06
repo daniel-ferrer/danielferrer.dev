@@ -1,0 +1,78 @@
+.figure {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 1.25rem;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.flow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.flowLabel {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.steps {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.node {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  padding: 0.45rem 0.75rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-med);
+  border-radius: 6px;
+  font-size: 0.8rem;
+  color: var(--ink);
+  line-height: 1.35;
+}
+
+.nodeNote {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  color: var(--ink-3);
+}
+
+.accent {
+  border-color: var(--accent);
+  background: var(--accent-light);
+}
+
+.gate {
+  border-style: dashed;
+  border-color: var(--accent);
+}
+
+.arrow {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--accent);
+}
+
+.caption {
+  font-size: 0.78rem;
+  color: var(--ink-3);
+  line-height: 1.6;
+  font-weight: 300;
+}

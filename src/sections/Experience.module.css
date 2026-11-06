@@ -160,6 +160,19 @@
   margin-top: 0.55em;
 }
 
+.studyToggle {
+  margin-top: 1.5rem;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--accent);
+  cursor: pointer;
+}
+
+.studyToggle:hover { text-decoration: underline; }
+
 .stack {
   display: flex;
   flex-wrap: wrap;

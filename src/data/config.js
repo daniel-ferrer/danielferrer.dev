@@ -59,6 +59,71 @@ export const config = {
       type:    'Full-time · Remote',
       // Detail lives on the resume; the site keeps a short summary plus the case study below.
       summary: 'I lead a team of 8 SREs at Invoice Cloud, a payments SaaS platform, owning incident response, observability, and reliability for customer-facing products. Along the way I cut MTTR by 40% and became one of three core developers of Watchtower, our internal SRE operations platform.',
+      // Expanded case study opened from the tab ("See the Watchtower case study →").
+      // Keep it to the name "Watchtower" — no other internal system, customer or host names.
+      caseStudy: {
+        id:    'watchtower',
+        title: 'Watchtower — SRE Operations & Reliability Platform',
+        meta:  'Invoice Cloud · 2026 — ongoing · Core Developer (1 of 3)',
+        tags:  ['C#', '.NET Core', 'ASP.NET Core', 'EF Core', 'Azure AI Foundry', 'Hangfire', 'SQL', 'Azure'],
+        sections: [
+          {
+            heading: 'The problem',
+            body: "Customer service reps, support, integrations, and implementation teams kept escalating customer issues to engineering, because the answers lived in engineers' heads, production data, and a sprawling codebase. Batch job and server failures on the enterprise scheduler were often found late, by customers.",
+          },
+          {
+            heading: 'My role',
+            body: "I'm one of three core developers who designed, built, and operate Watchtower, an SRE-owned platform that's now the engineering hub for 100+ users across Engineering and Customer Service.",
+          },
+          {
+            heading: 'How it works',
+            items: [
+              { title: 'AI incident triage chat', body: 'CS reps describe a payer, customer, or biller issue in plain language. The assistant runs on Azure AI Foundry models and grounds its answers in three sources: a curated engineering knowledge base of how systems work and connect, governed read access to production data, and an org-wide dependency graph of services and code. It walks reps through triage and root cause instead of sending them to an engineer.' },
+              { title: 'AI PR review layer', body: 'Every engineering pull request at the company (500+ a month) is reviewed automatically. Findings from post-incident reviews feed back into it, so it learns to catch the patterns that caused past outages and security issues.' },
+              { title: 'Proactive monitoring', body: 'Scheduled Hangfire jobs watch 200+ batch jobs and 10 servers/agents on the enterprise scheduler and page the owning team as soon as something fails.' },
+              { title: 'Self-service tooling framework', body: 'Engineering teams build their own internal ops tools on the platform instead of doing manual ops work.' },
+            ],
+          },
+          {
+            heading: 'Architecture',
+            diagram: {
+              caption: 'Three flows. Triage: a CS rep asks the Watchtower chat, which uses an Azure AI Foundry model grounded in a knowledge base, governed read-only production data, and a dependency graph. PR review: engineering pull requests go through the PR review layer, which also learns from incident data. Monitoring: Hangfire monitors watch the enterprise scheduler’s batch jobs and servers/agents and page the owning team on failure.',
+              flows: [
+                {
+                  label: 'Incident triage',
+                  steps: [
+                    'CS rep', '→',
+                    { text: 'Watchtower chat', kind: 'accent' }, '→',
+                    { text: 'AI model', note: 'Azure AI Foundry' }, '→',
+                    ['Knowledge base', { text: 'Production data', note: 'governed, read-only' }, 'Dependency graph'],
+                  ],
+                },
+                {
+                  label: 'PR review',
+                  steps: ['Engineering PRs', '→', { text: 'PR review layer', kind: 'accent' }, '←', 'Incident data'],
+                },
+                {
+                  label: 'Proactive monitoring',
+                  steps: [
+                    { text: 'Hangfire monitors', kind: 'accent' }, '→',
+                    { text: 'Enterprise scheduler', note: 'batch jobs, servers/agents' }, '→',
+                    'Paging', '→', 'Owning team',
+                  ],
+                },
+              ],
+            },
+          },
+          {
+            heading: 'Results',
+            bullets: [
+              '80% increase in ticket deflection, with far fewer issues escalated to engineering',
+              '50%+ faster time-to-detect for scheduler and batch failures',
+              '500+ PRs reviewed every month',
+              '100+ users across Engineering and Customer Service',
+            ],
+          },
+        ],
+      },
       stack: ['C#', '.NET Core', 'ASP.NET Core', 'EF Core', 'Azure AI Foundry', 'Hangfire', 'Python', 'SQL', 'Azure', 'Terraform', 'New Relic', 'Application Insights', 'Jira Service Management', 'AI / LLM Tooling'],
     },
     {
