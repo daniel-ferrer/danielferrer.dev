@@ -58,7 +58,7 @@ export const config = {
       period:  'Dec 2021 — Present',
       type:    'Full-time · Remote',
       // Detail lives on the resume; the site keeps a short summary plus the case study below.
-      summary: 'I lead a team of 8 SREs at Invoice Cloud, a payments SaaS platform, owning incident response, observability, and reliability for customer-facing products. Along the way I cut MTTR by 40% and became one of three core developers of Watchtower, our internal SRE operations platform.',
+      summary: 'I lead a team of 8 SREs at Invoice Cloud, a payments SaaS platform, owning incident response, observability, and reliability for customer-facing products. I\'ve cut MTTR by 40%, and as one of three core developers of Watchtower, our internal SRE operations platform, I helped cut manual ticket research by 80%.',
       // Expanded case study opened from the tab ("See the Watchtower case study →").
       // Keep it to the name "Watchtower" — no other internal system, customer or host names.
       caseStudy: {
