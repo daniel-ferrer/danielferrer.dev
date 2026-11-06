@@ -70,6 +70,20 @@
   color: var(--accent);
 }
 
+/* Narrow screens: stack each flow top-to-bottom, arrows pointing down */
+@media (max-width: 600px) {
+  .steps {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+  }
+  .arrow {
+    transform: rotate(90deg);
+    margin-left: 1rem;
+    line-height: 1;
+  }
+}
+
 .caption {
   font-size: 0.78rem;
   color: var(--ink-3);
