@@ -18,13 +18,29 @@ export default function FlowDiagram({ caption, flows }) {
         <div key={i} className={styles.flow}>
           {flow.label && <p className={styles.flowLabel}>{flow.label}</p>}
           <div className={styles.steps}>
-            {flow.steps.map((step, j) => <Step key={j} step={step} />)}
+            {pairArrows(flow.steps).map((unit, j) => (
+              <div key={j} className={styles.unit}>
+                {unit.map((step, k) => <Step key={k} step={step} />)}
+              </div>
+            ))}
           </div>
         </div>
       ))}
       <figcaption className={styles.caption}>{caption}</figcaption>
     </figure>
   )
+}
+
+// Keep each connector with the box after it, so a wrapped line never
+// ends on a dangling arrow.
+function pairArrows(steps) {
+  const units = []
+  steps.forEach((step, i) => {
+    const prevIsArrow = steps[i - 1] === '→' || steps[i - 1] === '←'
+    if (prevIsArrow) units[units.length - 1].push(step)
+    else units.push([step])
+  })
+  return units
 }
 
 function Step({ step }) {
