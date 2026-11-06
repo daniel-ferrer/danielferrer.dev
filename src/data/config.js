@@ -72,6 +72,10 @@ export const config = {
             body: "Customer service reps, support, integrations, and implementation teams kept escalating customer issues to engineering, because the answers lived in engineers' heads, production data, and a sprawling codebase. Batch job and server failures on the enterprise scheduler were often found late, by customers.",
           },
           {
+            heading: 'How it started',
+            body: 'Watchtower grew out of SRE-AI, a marketplace of agent skills the SRE team built and maintained for Product Support triage. Given a ticket, the agents dug through codebases, documentation, stored procedures, and data to find the root cause, then opened pull requests into their own knowledge base so the next investigation started smarter. That knowledge base became the core of Watchtower.',
+          },
+          {
             heading: 'My role',
             body: "I'm one of three core developers who designed, built, and operate Watchtower, an SRE-owned platform that's now the engineering hub for 100+ users across Engineering and Customer Service.",
           },
@@ -79,6 +83,7 @@ export const config = {
             heading: 'How it works',
             items: [
               { title: 'AI incident triage chat', body: 'CS reps describe a payer, customer, or biller issue in plain language. The assistant runs on Azure AI Foundry models and grounds its answers in three sources: a curated engineering knowledge base of how systems work and connect, governed read access to production data, and an org-wide dependency graph of services and code. It walks reps through triage and root cause instead of sending them to an engineer.' },
+              { title: 'Knowledge as a service', body: 'An MCP server exposes the engineering knowledge base and resources to other services and agents, so they can pull in how systems work and connect to assist their own processes instead of rebuilding that context themselves.' },
               { title: 'AI PR review layer', body: 'Every engineering pull request at the company (500+ a month) is reviewed automatically. Findings from post-incident reviews feed back into it, so it learns to catch the patterns that caused past outages and security issues.' },
               { title: 'Proactive monitoring', body: 'Scheduled Hangfire jobs watch 200+ batch jobs and 10 servers/agents on the enterprise scheduler and page the owning team as soon as something fails.' },
               { title: 'Self-service tooling framework', body: 'Engineering teams build their own internal ops tools on the platform instead of doing manual ops work.' },
@@ -87,7 +92,7 @@ export const config = {
           {
             heading: 'Architecture',
             diagram: {
-              caption: 'Three flows. Triage: a CS rep asks the Watchtower chat, which uses an Azure AI Foundry model grounded in a knowledge base, governed read-only production data, and a dependency graph. PR review: engineering pull requests go through the PR review layer, which also learns from incident data. Monitoring: Hangfire monitors watch the enterprise scheduler’s batch jobs and servers/agents and page the owning team on failure.',
+              caption: 'Four flows. Triage: a CS rep asks the Watchtower chat, which uses an Azure AI Foundry model grounded in a knowledge base, governed read-only production data, and a dependency graph. Knowledge as a service: other services and agents query the knowledge base through an MCP server. PR review: engineering pull requests go through the PR review layer, which also learns from incident data. Monitoring: Hangfire monitors watch the enterprise scheduler’s batch jobs and servers/agents and page the owning team on failure.',
               flows: [
                 {
                   label: 'Incident triage',
@@ -97,6 +102,10 @@ export const config = {
                     { text: 'AI model', note: 'Azure AI Foundry' }, '→',
                     ['Knowledge base', { text: 'Production data', note: 'governed, read-only' }, 'Dependency graph'],
                   ],
+                },
+                {
+                  label: 'Knowledge as a service',
+                  steps: ['Other services & agents', '→', { text: 'MCP server', kind: 'accent' }, '→', 'Knowledge base'],
                 },
                 {
                   label: 'PR review',
