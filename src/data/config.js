@@ -10,7 +10,7 @@ export const config = {
   // ── Identity ──────────────────────────────────────────────
   name:      'Daniel Ferrer-Sosa',
   initials:  'DFS',
-  title:     'Product Reliability Engineer',
+  title:     'Product Reliability Engineer · SRE Team Lead',
   location:  'San Antonio, TX',
   email:     'danielferrersosa@hotmail.com',
   openToWork: false,
@@ -18,15 +18,16 @@ export const config = {
   // ── Hero ──────────────────────────────────────────────────
   hero: {
     headline: 'Ship fast.\nFail safe.',
-    subHeadline: 'I lead reliability and resiliency for customer-facing SaaS products — embedding performance, scalability, and operability directly into the product lifecycle.',
+    subHeadline: 'I lead a team of SREs embedding reliability, scalability, and operability into customer-facing SaaS — and build the AI-driven tooling that lets teams move fast without breaking things.',
     // Typewriter cycling phrases shown beneath the sub-headline; "Currently focusing on..."
     tags: [
       'SRE · Product Reliability',
       '.NET · C# · Python',
       'Azure · Terraform',
       'real-time observability solutions',
-      'AI-driven alerting systems',
+      'AI-driven operations tooling',
       'eliminating toil',
+      'Otto',
       'HydroBot.NET',
       'Fimsy',
       'getting better at golf'
@@ -36,15 +37,15 @@ export const config = {
   // ── About ─────────────────────────────────────────────────
   about: {
     paragraphs: [
-      "I'm a Product Reliability Engineer with 4+ years in full-stack .NET development and 3+ years leading product-focused SRE efforts at Invoice Cloud. I operate at the intersection of software engineering, reliability, and product delivery — from assisting system design to triaging incident root causes to developer enablement via internal tooling.",
-      "My philosophy: reliability is not something you bolt on after shipping. I partner with product engineering teams, influencing architecture with failure-mode analysis, graceful degradation patterns, and SLO-driven prioritization that keeps customer impact front and center.",
+      "I'm an SRE team lead with 5 years building full-stack .NET products and embedding reliability into customer-facing SaaS at scale at Invoice Cloud. I work where product engineering meets operational excellence — system design, incident response, observability, and AI-driven operations tooling — while still shipping production code.",
+      "My philosophy: reliability is not something you bolt on after shipping. I focus on translating reliability risk into business impact, and on building the tooling, processes, and culture that let teams move fast without breaking things.",
       "Outside of work, I'm building Fimsy, trying to teach my beagle Zoe to code (it's not going well), playing tons of golf, and perpetually tinkering with whatever side project has my attention this week.",
     ],
     metrics: [
-      { value: '4+',  unit: 'yrs',  label: 'Software Engineering experience'    },
-      { value: '40%+', unit: '$',     label: 'Observability platform cost reduction' },
-      { value: '3+',  unit: 'yrs',  label: 'Product Reliability focus'             },
-      { value: '30%↓',   unit: 'MTTR', label: 'Improved via automation'   },
+      { value: '5',    unit: 'yrs',  label: 'Building .NET products & reliability' },
+      { value: '8',    unit: 'SREs', label: 'Team led'                             },
+      { value: '40%↓', unit: 'MTTR', label: 'Via alerting, automation & runbooks'  },
+      { value: '80%',  unit: '↑',    label: 'Ticket deflection with AI triage'     },
     ],
   },
 
@@ -53,23 +54,31 @@ export const config = {
     {
       company: 'InvoiceCloud',
       url:     'https://www.invoicecloud.net',
-      role:    'Product Reliability Engineer',
+      role:    'Product Reliability Engineer — SRE Team Lead',
       period:  'Dec 2021 — Present',
       type:    'Full-time · Remote',
-      summary: 'Led a product-focused SRE team responsible for embedding reliability, scalability, and operability directly into customer-facing SaaS products. I own system design, incident response, observability architecture, and developer enablement — partnering closely with Product and Engineering to make reliability a first-class concern.',
+      summary: 'Lead a team of 8 SREs embedding reliability, scalability, and operability into customer-facing SaaS products. I own high-severity incident response, observability, and AI-driven operations tooling — partnering closely with Product and Engineering to make reliability a first-class concern.',
       bullets: [
-        'Influenced feature design with reliability-first architecture and failure-mode analysis, ensuring patterns like graceful degradation and fault isolation were built into services from day one.',
-        'Led high-severity incident root cause analysis for core product domains, improving MTTR through automation, runbook standardization, and symptom-based alerting aligned to real customer impact.',
-        'Resolved observability gaps across legacy projects during codebase modernization — building standardized metrics, logging, and distributed tracing practices across the product suite.',
-        'Built SRE-AI, an internal AI triage platform now the SRE org\'s default workflow for Development Support tickets — replacing multi-hour manual investigation with a reproducible, auditable process where every session emits a structured report, captured query trail, and assumption ledger.',
-        'Authored an 11-phase incident triage workflow that ingests a Jira ticket, auto-detects the owning SRE team, correlates against historical incidents and open engineering bugs, gathers evidence across Jira, Confluence, Azure DevOps, SQL Server, and New Relic, and produces a structured triage report plus downstream artifacts (engineering bug drafts, SA items, CSV reports) conforming to each board\'s template.',
-        'Wrote a .NET 10 MCP server exposing production-safe database access to AI agents — SELECT-only by construction, per-database row limits, query timeouts, and schema allowlists — so an AI can investigate live shards with no bypass path.',
-        'Designed a pluggable per-domain runbook architecture (Integrations, Payer, Biller, Payments) so each SRE team owns its own service classification, failure patterns, and escalation criteria; new domains onboard with a single PR.',
-        'Reduced alert fatigue by improving signal quality and aligning alert policies to customer-impacting symptoms rather than system noise.',
+        'Own high-severity incident response for core product domains; improved MTTR by 40% through better alerting, automation, and standardized runbooks.',
+        'Built and standardized observability across 50+ services using metrics, logging, and distributed tracing in New Relic, giving teams actionable insight into product health.',
+        'Reduced alert fatigue by cutting non-actionable pages 50%+, aligning alerts to customer-impacting symptoms.',
+        'Designed and deployed an ML-based solution that auto-triages incoming support tickets across 100+ tickets/month.',
         'Mentored SRE engineers on reliability best practices, setting technical direction, reviewing designs, and advocating for sustainable on-call culture across product engineering teams.',
-        'Communicated reliability risks and engineering investments in business terms to leadership, customer teams, and stakeholders.',
       ],
-      stack: ['C#', 'ASP.NET Core', 'Python', 'Terraform', 'Azure', 'New Relic', 'SQL', 'Azure DevOps', 'Claude Code', 'MCP'],
+      keyProjects: [
+        {
+          name: 'Watchtower — SRE Operations & Reliability Platform',
+          role: 'Core Developer',
+          bullets: [
+            'Co-built and operate an SRE-owned internal platform that centralizes operational tooling, monitoring, and incident triage for 100+ users across Engineering and Customer Service organizations.',
+            'Built an AI-assisted incident triage chat that increased ticket deflection by 80%, letting CS reps root-cause customer issues independently using an engineering knowledge base, governed data access, and an org-wide service dependency graph.',
+            'Built proactive monitoring covering 200+ batch jobs and 10 servers/agents on the enterprise scheduler, auto-paging teams on failure and cutting time-to-detect by 50%+.',
+            'Helped deliver a company-wide AI PR review layer that reviews every engineering pull request (500+/month) and learns from post-incident data to catch recurring failure patterns and security risks before production.',
+            'Reduced operational toil by giving engineering teams a shared framework for building self-service internal tools instead of running manual ops work.',
+          ],
+        },
+      ],
+      stack: ['C#', 'ASP.NET Core', 'Hangfire', 'Python', 'SQL', 'Azure', 'Terraform', 'New Relic', 'Application Insights', 'Jira Service Management', 'AI / LLM Tooling'],
     },
     {
       company: 'University of Texas at San Antonio',
@@ -94,6 +103,14 @@ export const config = {
   //  To add a new project: copy a block below and fill in the fields.
   //
   projects: [
+    {
+      name:   'Otto',
+      year:   '2026 — ongoing',
+      desc:   "A self-hosted AI command center that runs my projects from a single conversation. A lightweight router hands each task to a fresh, scoped agent on pluggable model backends, then moves the change through gated pipelines — plan, implement, review, verify, deliver — to a pull request I can approve from my phone.",
+      stack:  ['Private · In Development'],
+      link:   null,           // ← add link once public
+      status: 'wip',
+    },
     {
       name:   'Fimsy',
       year:   '2025 — ongoing',
@@ -136,15 +153,15 @@ export const config = {
     },
     {
       category: 'Frameworks & Runtimes',
-      items: ['ASP.NET Core MVC', 'ASP.NET Core Web API', 'Entity Framework', 'WPF', 'Node.js'],
+      items: ['ASP.NET Core MVC', 'ASP.NET Core Web API', 'Entity Framework', 'Hangfire', 'WPF', 'Node.js'],
     },
     {
       category: 'Cloud & Infrastructure',
-      items: ['Microsoft Azure', 'Azure DevOps', 'Terraform', 'Git'],
+      items: ['Microsoft Azure', 'Terraform', 'Jenkins', 'Woodpecker', 'SonarQube', 'Azure DevOps', 'Git'],
     },
     {
-      category: 'Observability & Reliability',
-      items: ['New Relic', 'SLI / SLO Design', 'Critical Customer Journey Coverage', 'Alert Tuning', 'Distributed Tracing', 'Runbook Design'],
+      category: 'Observability & Incident Response',
+      items: ['New Relic', 'Application Insights', 'Jira Service Management', 'SLI / SLO Design', 'Critical Customer Journey Coverage', 'Alert Tuning', 'Distributed Tracing', 'Runbook Design'],
     },
     {
       category: 'Developer Tools',

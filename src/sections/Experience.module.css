@@ -160,6 +160,34 @@
   margin-top: 0.55em;
 }
 
+.keyProject {
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.keyProjectTitle {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.keyProjectLabel {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.25rem;
+}
+
+.keyProjectRole {
+  font-weight: 300;
+  color: var(--ink-2);
+}
+
 .stack {
   display: flex;
   flex-wrap: wrap;
