@@ -7,7 +7,7 @@ import styles from './CaseStudy.module.css'
  * CaseStudy — expanded write-up for a role or project.
  *
  * study: {
- *   id, title, meta, tags[],
+ *   id, title, meta, eyebrow? ('Case study'), tags[],
  *   sections: [
  *     { heading, body }                 — paragraph
  *     { heading, items: [{title, body}] } — titled list
@@ -21,6 +21,7 @@ import styles from './CaseStudy.module.css'
  * focus to it.
  */
 const CaseStudy = forwardRef(function CaseStudy({ study, open, onClose }, headingRef) {
+  const eyebrow = study.eyebrow ?? 'Case study'
   return (
     <section
       id={study.id}
@@ -29,7 +30,7 @@ const CaseStudy = forwardRef(function CaseStudy({ study, open, onClose }, headin
       aria-labelledby={`${study.id}-title`}
     >
       <header className={styles.header}>
-        <p className={styles.eyebrow}>Case study</p>
+        <p className={styles.eyebrow}>{eyebrow}</p>
         <h3 id={`${study.id}-title`} className={styles.title} ref={headingRef} tabIndex={-1}>
           {study.title}
         </h3>
@@ -70,7 +71,7 @@ const CaseStudy = forwardRef(function CaseStudy({ study, open, onClose }, headin
 
       {onClose && (
         <button type="button" className={styles.close} onClick={onClose}>
-          Close case study ↑
+          Close {eyebrow.toLowerCase()} ↑
         </button>
       )}
     </section>

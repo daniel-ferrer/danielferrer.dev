@@ -156,6 +156,56 @@ export const config = {
       stack:  ['Private · In Development'],
       link:   null,           // ← add link once public
       status: 'wip',
+      // Expanded write-up shown beneath the workshop grid.
+      // Keep model backends generic — don't name specific providers or models.
+      details: {
+        id:      'otto',
+        eyebrow: 'Write-up',
+        title:   'Otto — self-hosted AI command center',
+        meta:    '2026 — ongoing · Private · In Development',
+        tags:    ['TypeScript', 'Node.js', 'Hono', 'SQLite', 'React', 'Vite', 'MCP'],
+        sections: [
+          {
+            heading: 'Overview',
+            body: 'Otto runs my side projects from a single conversation. A lightweight router takes each request and hands it to a fresh agent scoped to that one task, running on a pluggable model backend. Each change then moves through gated stages — plan, implement, review, verify, deliver — and ends as a pull request I can approve from my phone.',
+          },
+          {
+            heading: 'Why I built it',
+            body: "I was running AI coding sessions across several projects at once and kept losing track of which ones were blocked, which were editing the same files, and which had actually merged. I wanted one place to talk to that sends work to isolated agents and only calls something done once it has landed as a checked pull request.",
+          },
+          {
+            heading: 'Pipeline',
+            diagram: {
+              caption: 'A request goes to the router, which hands it to a scoped agent. The change then moves through plan, implement and review (agent stages), verify (real checks, no model), and an approval gate at deliver, ending as a pull request.',
+              flows: [
+                {
+                  steps: [
+                    'Request', '→',
+                    { text: 'Router', note: 'no code access', kind: 'accent' }, '→',
+                    { text: 'Scoped agent', note: 'own git worktree' }, '→',
+                    'Plan', '→', 'Implement', '→', 'Review', '→',
+                    { text: 'Verify', note: 'real checks' }, '→',
+                    { text: 'Deliver', note: 'approval gate', kind: 'gate' }, '→',
+                    { text: 'Pull request', kind: 'accent' },
+                  ],
+                },
+              ],
+            },
+          },
+          {
+            heading: 'Interesting engineering decisions',
+            items: [
+              { title: 'A router, not a monolith', body: "The router I talk to can't read code: its filesystem tools are denied in code, and it only sees a token-capped index of my workspaces. Deterministic code, not the model, decides what a message is allowed to start, and real work goes to fresh agents scoped to one workspace, each in its own git worktree." },
+              { title: 'Mechanical stages stay mechanical', body: 'Plan, implement and review are agent stages; verify, deliver and land run real commands with no model in the loop. Verify records the exact tree it checked, and landing re-checks it against the current base before merging. Workflows are versioned data, so editing one never changes a run already in flight.' },
+              { title: 'Pluggable model backends', body: "Each stage runs on whichever backend its model id names, and every backend's output is normalized into the same transcript, cost and resume contract — so adding a provider doesn't touch the pipeline, and a stage can fall back to another provider when one hits its usage limit." },
+            ],
+          },
+          {
+            heading: 'Stack',
+            body: 'TypeScript on Node.js, with a Hono API (HTTP + server-sent events), SQLite as a derived cache over JSON manifests on disk, a React + Vite UI, and an MCP server that gives the router bounded, read-only views of each workspace. Self-hosted as a service on a Linux home server.',
+          },
+        ],
+      },
     },
     {
       name:   'Fimsy',
