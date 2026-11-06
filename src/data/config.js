@@ -73,7 +73,7 @@ export const config = {
           },
           {
             heading: 'Two layers of triage',
-            body: "Every ticket now passes through two AI layers before an engineer sees it. First, Watchtower's support chat answers questions at the point of entry, deflecting 20%+ of tickets before they are ever filed. Tickets that do come through go to SRE-AI, a marketplace of agent skills the SRE team built and maintains. It fans agents out across codebases, documentation, stored procedures, and data for as long as the investigation needs, and keeps an audit trail of every step. When it can't find the root cause, a human takes over, which happens for fewer than 30% of tickets. Each investigation also opens pull requests into the shared knowledge base, so the next one starts smarter.",
+            body: "Every ticket now passes through two AI layers before an engineer sees it. First, Watchtower's support chat answers questions at the point of entry, deflecting 20%+ of tickets before they are ever filed. Tickets that do come through go to SRE-AI, a marketplace of agentic resources the SRE team built and maintains. It fans agents out across codebases, documentation, stored procedures, and data for as long as the investigation needs, and keeps an audit trail of every step. When it can't find the root cause, a human takes over, which happens for fewer than 30% of tickets. Each investigation also opens pull requests into the shared knowledge base, so the next one starts smarter.",
           },
           {
             heading: 'My role',
