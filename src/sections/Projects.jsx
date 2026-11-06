@@ -148,7 +148,7 @@ function ProjectCard({ project, index, visible, openId, onToggle, toggleRefs }) 
             </a>
           )}
           {isWip && (
-            <span className={styles.lockIcon} aria-label="Private repository">
+            <span className={styles.lockIcon} role="img" aria-label="Private repository">
               <LockIcon />
             </span>
           )}
