@@ -45,7 +45,7 @@ export const config = {
       { value: '5',    unit: 'yrs',  label: 'Building .NET products & reliability' },
       { value: '8',    unit: 'SREs', label: 'Team led'                             },
       { value: '40%↓', unit: 'MTTR', label: 'Via alerting, automation & runbooks'  },
-      { value: '80%',  unit: '↑',    label: 'Ticket deflection with AI triage'     },
+      { value: '80%↓', unit: '',     label: 'Manual ticket research via AI triage' },
     ],
   },
 
@@ -72,8 +72,8 @@ export const config = {
             body: "Customer service reps, support, integrations, and implementation teams kept escalating customer issues to engineering, because the answers lived in engineers' heads, production data, and a sprawling codebase. Batch job and server failures on the enterprise scheduler were often found late, by customers.",
           },
           {
-            heading: 'How it started',
-            body: 'Watchtower grew out of SRE-AI, a marketplace of agent skills the SRE team built and maintained for Product Support triage. Given a ticket, the agents dug through codebases, documentation, stored procedures, and data to find the root cause, then opened pull requests into their own knowledge base so the next investigation started smarter. That knowledge base became the core of Watchtower.',
+            heading: 'Two layers of triage',
+            body: "Every ticket now passes through two AI layers before an engineer sees it. First, Watchtower's support chat answers questions at the point of entry, deflecting 20%+ of tickets before they are ever filed. Tickets that do come through go to SRE-AI, a marketplace of agent skills the SRE team built and maintains. It fans agents out across codebases, documentation, stored procedures, and data for as long as the investigation needs, and keeps an audit trail of every step. When it can't find the root cause, a human takes over, which happens for fewer than 30% of tickets. Each investigation also opens pull requests into the shared knowledge base, so the next one starts smarter.",
           },
           {
             heading: 'My role',
@@ -82,20 +82,32 @@ export const config = {
           {
             heading: 'How it works',
             items: [
-              { title: 'AI incident triage chat', body: 'CS reps describe a payer, customer, or biller issue in plain language. The assistant runs on Azure AI Foundry models and grounds its answers in three sources: a curated engineering knowledge base of how systems work and connect, governed read access to production data, and an org-wide dependency graph of services and code. It walks reps through triage and root cause instead of sending them to an engineer.' },
+              { title: 'AI support chat', body: 'CS reps describe a payer, customer, or biller issue in plain language. The assistant runs on Azure AI Foundry models and grounds its answers in three sources: a curated engineering knowledge base of how systems work and connect, governed read access to production data, and an org-wide dependency graph of services and code. It walks reps through triage and root cause instead of sending them to an engineer.' },
               { title: 'Knowledge as a service', body: 'An MCP server exposes the engineering knowledge base and resources to other services and agents, so they can pull in how systems work and connect to assist their own processes instead of rebuilding that context themselves.' },
               { title: 'AI PR review layer', body: 'Every engineering pull request at the company (500+ a month) is reviewed automatically. Findings from post-incident reviews feed back into it, so it learns to catch the patterns that caused past outages and security issues.' },
-              { title: 'Proactive monitoring', body: 'Scheduled Hangfire jobs watch 200+ batch jobs and 10 servers/agents on the enterprise scheduler and page the owning team as soon as something fails.' },
+              { title: 'Proactive monitoring', body: 'Scheduled Hangfire jobs watch 200+ batch jobs and 10 servers/agents on the enterprise scheduler. When something fails, an LLM reads the logs and assesses severity, customer impact, and whether the job will recover on its own or is a recurring problem that needs attention now. That analysis goes into the page, so the on-call engineer gets a warm handoff instead of a bare alert, and issues that customers used to report repeatedly are now caught first.' },
+              { title: 'Auto-remediation', body: 'Newly rolled out: workflows decide whether a detected failure is caused by a code bug and, when an agent can fix it, open the pull request with the fix themselves. Detect, diagnose, and fix, with no human needed.' },
               { title: 'Self-service tooling framework', body: 'Engineering teams build their own internal ops tools on the platform instead of doing manual ops work.' },
             ],
           },
           {
             heading: 'Architecture',
             diagram: {
-              caption: 'Four flows. Triage: a CS rep asks the Watchtower chat, which uses an Azure AI Foundry model grounded in a knowledge base, governed read-only production data, and a dependency graph. Knowledge as a service: other services and agents query the knowledge base through an MCP server. PR review: engineering pull requests go through the PR review layer, which also learns from incident data. Monitoring: Hangfire monitors watch the enterprise scheduler’s batch jobs and servers/agents and page the owning team on failure.',
+              caption: 'Five flows. Ticket path: a customer issue reaches the support chat, which answers 20%+ before a ticket is filed; the rest go to SRE-AI, which investigates with an audit trail, and fewer than 30% need a human before resolution. Support chat: the Watchtower chat uses an Azure AI Foundry model grounded in a knowledge base, governed read-only production data, and a dependency graph. Knowledge as a service: other services and agents query the knowledge base through an MCP server. PR review: engineering pull requests go through the PR review layer, which also learns from incident data. Monitoring: Hangfire monitors watch the enterprise scheduler’s batch jobs and servers/agents; an LLM analyzes the logs, the analysis goes into the page to the owning team, and fixable code bugs go to an agent that opens a fix PR.',
               flows: [
                 {
-                  label: 'Incident triage',
+                  label: 'Ticket path',
+                  steps: [
+                    'Customer issue', '→',
+                    { text: 'Support chat', note: '20%+ answered here', kind: 'accent' }, '→',
+                    'Ticket', '→',
+                    { text: 'SRE-AI investigation', note: 'agent fan-out, audit trail', kind: 'accent' }, '→',
+                    { text: 'Human in the loop', note: 'under 30% of tickets', kind: 'gate' }, '→',
+                    'Resolved',
+                  ],
+                },
+                {
+                  label: 'Support chat grounding',
                   steps: [
                     'CS rep', '→',
                     { text: 'Watchtower chat', kind: 'accent' }, '→',
@@ -116,7 +128,17 @@ export const config = {
                   steps: [
                     { text: 'Hangfire monitors', kind: 'accent' }, '→',
                     { text: 'Enterprise scheduler', note: 'batch jobs, servers/agents' }, '→',
-                    'Paging', '→', 'Owning team',
+                    { text: 'LLM log analysis', note: 'severity, impact, recurring?' }, '→',
+                    { text: 'Page with analysis', note: 'warm handoff' }, '→', 'Owning team',
+                  ],
+                },
+                {
+                  label: 'Auto-remediation',
+                  steps: [
+                    'Detected failure', '→',
+                    { text: 'Code bug?', note: 'agent-fixable', kind: 'gate' }, '→',
+                    { text: 'Agent fix', kind: 'accent' }, '→',
+                    'Pull request',
                   ],
                 },
               ],
@@ -125,8 +147,11 @@ export const config = {
           {
             heading: 'Results',
             bullets: [
-              '80% increase in ticket deflection, with far fewer issues escalated to engineering',
-              '50%+ faster time-to-detect for scheduler and batch failures',
+              '80% less manual research per ticket',
+              '20%+ of tickets deflected before they are filed',
+              'Fewer than 30% of engineering tickets need a human',
+              '50%+ faster resolution for tickets SRE-AI resolves on its own; most tickets close in 1–2 days regardless of priority, some within an hour',
+              '50%+ faster time-to-detect for scheduler and batch failures, with fewer repeat incidents',
               '500+ PRs reviewed every month',
               '100+ users across Engineering and Customer Service',
             ],
