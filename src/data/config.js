@@ -186,7 +186,7 @@ export const config = {
     {
       name:   'Otto',
       year:   '2026 — ongoing',
-      desc:   "A self-hosted AI command center that runs my projects from a single conversation. A lightweight router hands each task to a fresh, scoped agent on pluggable model backends, then moves the change through gated pipelines — plan, implement, review, verify, deliver — to a pull request I can approve from my phone.",
+      desc:   "A self-hosted AI command center. I describe the work in one conversation; scoped agents carry it through gated pipelines to a pull request I approve from my phone.",
       stack:  ['Private · In Development'],
       link:   null,           // ← add link once public
       status: 'wip',
