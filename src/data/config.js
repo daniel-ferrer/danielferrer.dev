@@ -39,7 +39,7 @@ export const config = {
     paragraphs: [
       "I'm a Product Reliability Engineer with 5 years building full-stack .NET products and embedding reliability into customer-facing SaaS at Invoice Cloud. I lead Watchtower, our SRE operations platform, and work where product engineering meets operational excellence — system design, incident response, observability, and AI-driven operations tooling — while still shipping production code.",
       "My philosophy: reliability is not something you bolt on after shipping. I focus on translating reliability risk into business impact, and on building the tooling, processes, and culture that let teams move fast without breaking things.",
-      "Outside of work, I'm building Fimsy, trying to teach my beagle Zoe to code (it's not going well), playing tons of golf, and perpetually tinkering with whatever side project has my attention this week.",
+      "Outside of work, I'm building Otto and Fimsy, trying to teach my beagle Zoe to code (it's not going well), playing tons of golf, and perpetually tinkering with whatever side project has my attention this week.",
     ],
     metrics: [
       { value: '5',    unit: 'yrs',  label: 'Building .NET products & reliability' },
