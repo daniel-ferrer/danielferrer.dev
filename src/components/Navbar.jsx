@@ -52,8 +52,8 @@ export default function Navbar() {
         <div className={styles.inner}>
 
           {/* Logo */}
-          <a href="#hero" className={styles.logo} onClick={close} aria-label="Home">
-            <span className={styles.logoMark}>{config.initials}</span>
+          <a href="#hero" className={styles.logo} onClick={close}>
+            <span className={styles.logoMark} aria-hidden="true">{config.initials}</span>
             <span className={styles.logoName}>{config.name}</span>
           </a>
 
@@ -101,6 +101,8 @@ export default function Navbar() {
       <div
         className={`${styles.overlay} ${menuOpen ? styles.overlayOpen : ''}`}
         aria-hidden={!menuOpen}
+        // inert keeps the closed menu's links out of the tab order (React 18 needs the string form)
+        inert={menuOpen ? undefined : ''}
       >
         <nav>
           <ul className={styles.overlayList}>

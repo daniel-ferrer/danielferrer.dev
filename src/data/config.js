@@ -57,28 +57,83 @@ export const config = {
       role:    'Product Reliability Engineer — SRE Team Lead',
       period:  'Dec 2021 — Present',
       type:    'Full-time · Remote',
-      summary: 'Lead a team of 8 SREs embedding reliability, scalability, and operability into customer-facing SaaS products. I own high-severity incident response, observability, and AI-driven operations tooling — partnering closely with Product and Engineering to make reliability a first-class concern.',
-      bullets: [
-        'Own high-severity incident response for core product domains; improved MTTR by 40% through better alerting, automation, and standardized runbooks.',
-        'Built and standardized observability across 50+ services using metrics, logging, and distributed tracing in New Relic, giving teams actionable insight into product health.',
-        'Reduced alert fatigue by cutting non-actionable pages 50%+, aligning alerts to customer-impacting symptoms.',
-        'Designed and deployed an ML-based solution that auto-triages incoming support tickets across 100+ tickets/month.',
-        'Mentored SRE engineers on reliability best practices, setting technical direction, reviewing designs, and advocating for sustainable on-call culture across product engineering teams.',
-      ],
-      keyProjects: [
-        {
-          name: 'Watchtower — SRE Operations & Reliability Platform',
-          role: 'Core Developer',
-          bullets: [
-            'Co-built and operate an SRE-owned internal platform that centralizes operational tooling, monitoring, and incident triage for 100+ users across Engineering and Customer Service organizations.',
-            'Built an AI-assisted incident triage chat that increased ticket deflection by 80%, letting CS reps root-cause customer issues independently using an engineering knowledge base, governed data access, and an org-wide service dependency graph.',
-            'Built proactive monitoring covering 200+ batch jobs and 10 servers/agents on the enterprise scheduler, auto-paging teams on failure and cutting time-to-detect by 50%+.',
-            'Helped deliver a company-wide AI PR review layer that reviews every engineering pull request (500+/month) and learns from post-incident data to catch recurring failure patterns and security risks before production.',
-            'Reduced operational toil by giving engineering teams a shared framework for building self-service internal tools instead of running manual ops work.',
-          ],
-        },
-      ],
-      stack: ['C#', 'ASP.NET Core', 'Hangfire', 'Python', 'SQL', 'Azure', 'Terraform', 'New Relic', 'Application Insights', 'Jira Service Management', 'AI / LLM Tooling'],
+      // Detail lives on the resume; the site keeps a short summary plus the case study below.
+      summary: 'I lead a team of 8 SREs at Invoice Cloud, a payments SaaS platform, owning incident response, observability, and reliability for customer-facing products. Along the way I cut MTTR by 40% and became one of three core developers of Watchtower, our internal SRE operations platform.',
+      // Expanded case study opened from the tab ("See the Watchtower case study →").
+      // Keep it to the name "Watchtower" — no other internal system, customer or host names.
+      caseStudy: {
+        id:    'watchtower',
+        title: 'Watchtower — SRE Operations & Reliability Platform',
+        meta:  'Invoice Cloud · 2026 — ongoing · Core Developer (1 of 3)',
+        tags:  ['C#', '.NET Core', 'ASP.NET Core', 'EF Core', 'Azure AI Foundry', 'Hangfire', 'SQL', 'Azure'],
+        sections: [
+          {
+            heading: 'The problem',
+            body: "Customer service reps, support, integrations, and implementation teams kept escalating customer issues to engineering, because the answers lived in engineers' heads, production data, and a sprawling codebase. Batch job and server failures on the enterprise scheduler were often found late, by customers.",
+          },
+          {
+            heading: 'How it started',
+            body: 'Watchtower grew out of SRE-AI, a marketplace of agent skills the SRE team built and maintained for Product Support triage. Given a ticket, the agents dug through codebases, documentation, stored procedures, and data to find the root cause, then opened pull requests into their own knowledge base so the next investigation started smarter. That knowledge base became the core of Watchtower.',
+          },
+          {
+            heading: 'My role',
+            body: "I'm one of three core developers who designed, built, and operate Watchtower, an SRE-owned platform that's now the engineering hub for 100+ users across Engineering and Customer Service.",
+          },
+          {
+            heading: 'How it works',
+            items: [
+              { title: 'AI incident triage chat', body: 'CS reps describe a payer, customer, or biller issue in plain language. The assistant runs on Azure AI Foundry models and grounds its answers in three sources: a curated engineering knowledge base of how systems work and connect, governed read access to production data, and an org-wide dependency graph of services and code. It walks reps through triage and root cause instead of sending them to an engineer.' },
+              { title: 'Knowledge as a service', body: 'An MCP server exposes the engineering knowledge base and resources to other services and agents, so they can pull in how systems work and connect to assist their own processes instead of rebuilding that context themselves.' },
+              { title: 'AI PR review layer', body: 'Every engineering pull request at the company (500+ a month) is reviewed automatically. Findings from post-incident reviews feed back into it, so it learns to catch the patterns that caused past outages and security issues.' },
+              { title: 'Proactive monitoring', body: 'Scheduled Hangfire jobs watch 200+ batch jobs and 10 servers/agents on the enterprise scheduler and page the owning team as soon as something fails.' },
+              { title: 'Self-service tooling framework', body: 'Engineering teams build their own internal ops tools on the platform instead of doing manual ops work.' },
+            ],
+          },
+          {
+            heading: 'Architecture',
+            diagram: {
+              caption: 'Four flows. Triage: a CS rep asks the Watchtower chat, which uses an Azure AI Foundry model grounded in a knowledge base, governed read-only production data, and a dependency graph. Knowledge as a service: other services and agents query the knowledge base through an MCP server. PR review: engineering pull requests go through the PR review layer, which also learns from incident data. Monitoring: Hangfire monitors watch the enterprise scheduler’s batch jobs and servers/agents and page the owning team on failure.',
+              flows: [
+                {
+                  label: 'Incident triage',
+                  steps: [
+                    'CS rep', '→',
+                    { text: 'Watchtower chat', kind: 'accent' }, '→',
+                    { text: 'AI model', note: 'Azure AI Foundry' }, '→',
+                    ['Knowledge base', { text: 'Production data', note: 'governed, read-only' }, 'Dependency graph'],
+                  ],
+                },
+                {
+                  label: 'Knowledge as a service',
+                  steps: ['Other services & agents', '→', { text: 'MCP server', kind: 'accent' }, '→', 'Knowledge base'],
+                },
+                {
+                  label: 'PR review',
+                  steps: ['Engineering PRs', '→', { text: 'PR review layer', kind: 'accent' }, '←', 'Incident data'],
+                },
+                {
+                  label: 'Proactive monitoring',
+                  steps: [
+                    { text: 'Hangfire monitors', kind: 'accent' }, '→',
+                    { text: 'Enterprise scheduler', note: 'batch jobs, servers/agents' }, '→',
+                    'Paging', '→', 'Owning team',
+                  ],
+                },
+              ],
+            },
+          },
+          {
+            heading: 'Results',
+            bullets: [
+              '80% increase in ticket deflection, with far fewer issues escalated to engineering',
+              '50%+ faster time-to-detect for scheduler and batch failures',
+              '500+ PRs reviewed every month',
+              '100+ users across Engineering and Customer Service',
+            ],
+          },
+        ],
+      },
+      stack: ['C#', '.NET Core', 'ASP.NET Core', 'EF Core', 'Azure AI Foundry', 'Hangfire', 'Python', 'SQL', 'Azure', 'Terraform', 'New Relic', 'Application Insights', 'Jira Service Management', 'AI / LLM Tooling'],
     },
     {
       company: 'University of Texas at San Antonio',
@@ -110,6 +165,56 @@ export const config = {
       stack:  ['Private · In Development'],
       link:   null,           // ← add link once public
       status: 'wip',
+      // Expanded write-up shown beneath the workshop grid.
+      // Keep model backends generic — don't name specific providers or models.
+      details: {
+        id:      'otto',
+        eyebrow: 'Write-up',
+        title:   'Otto — self-hosted AI command center',
+        meta:    '2026 — ongoing · Private · In Development',
+        tags:    ['TypeScript', 'Node.js', 'Hono', 'SQLite', 'React', 'Vite', 'MCP'],
+        sections: [
+          {
+            heading: 'Overview',
+            body: 'Otto runs my side projects from a single conversation. A lightweight router takes each request and hands it to a fresh agent scoped to that one task, running on a pluggable model backend. Each change then moves through gated stages — plan, implement, review, verify, deliver — and ends as a pull request I can approve from my phone.',
+          },
+          {
+            heading: 'Why I built it',
+            body: "I was running AI coding sessions across several projects at once and kept losing track of which ones were blocked, which were editing the same files, and which had actually merged. I wanted one place to talk to that sends work to isolated agents and only calls something done once it has landed as a checked pull request.",
+          },
+          {
+            heading: 'Pipeline',
+            diagram: {
+              caption: 'A request goes to the router, which hands it to a scoped agent. The change then moves through plan, implement and review (agent stages), verify (real checks, no model), and an approval gate at deliver, ending as a pull request.',
+              flows: [
+                {
+                  steps: [
+                    'Request', '→',
+                    { text: 'Router', note: 'no code access', kind: 'accent' }, '→',
+                    { text: 'Scoped agent', note: 'own git worktree' }, '→',
+                    'Plan', '→', 'Implement', '→', 'Review', '→',
+                    { text: 'Verify', note: 'real checks' }, '→',
+                    { text: 'Deliver', note: 'approval gate', kind: 'gate' }, '→',
+                    { text: 'Pull request', kind: 'accent' },
+                  ],
+                },
+              ],
+            },
+          },
+          {
+            heading: 'Interesting engineering decisions',
+            items: [
+              { title: 'A router, not a monolith', body: "The router I talk to can't read code: its filesystem tools are denied in code, and it only sees a token-capped index of my workspaces. Deterministic code, not the model, decides what a message is allowed to start, and real work goes to fresh agents scoped to one workspace, each in its own git worktree." },
+              { title: 'Mechanical stages stay mechanical', body: 'Plan, implement and review are agent stages; verify, deliver and land run real commands with no model in the loop. Verify records the exact tree it checked, and landing re-checks it against the current base before merging. Workflows are versioned data, so editing one never changes a run already in flight.' },
+              { title: 'Pluggable model backends', body: "Each stage runs on whichever backend its model id names, and every backend's output is normalized into the same transcript, cost and resume contract — so adding a provider doesn't touch the pipeline, and a stage can fall back to another provider when one hits its usage limit." },
+            ],
+          },
+          {
+            heading: 'Stack',
+            body: 'TypeScript on Node.js, with a Hono API (HTTP + server-sent events), SQLite as a derived cache over JSON manifests on disk, a React + Vite UI, and an MCP server that gives the router bounded, read-only views of each workspace. Self-hosted as a service on a Linux home server.',
+          },
+        ],
+      },
     },
     {
       name:   'Fimsy',

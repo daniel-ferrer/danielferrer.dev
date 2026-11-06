@@ -1,11 +1,56 @@
+import { useEffect, useRef, useState } from 'react'
 import { config } from '../data/config'
 import { useReveal } from '../hooks/useReveal'
 import SectionHeader from '../components/SectionHeader'
 import Tag from '../components/Tag'
+import CaseStudy from '../components/CaseStudy'
 import styles from './Projects.module.css'
 
 export default function Projects() {
   const [ref, visible] = useReveal()
+
+  // Expanded write-ups (project.details), shown beneath their grid
+  const [openId, setOpenId] = useState(null)
+  const toggleRefs  = useRef({})
+  const headingRefs = useRef({})
+  const focusOnOpen = useRef(false)
+
+  const toggle = (id) => {
+    if (openId === id) {
+      setOpenId(null)
+      toggleRefs.current[id]?.focus()
+    } else {
+      focusOnOpen.current = true
+      setOpenId(id)
+    }
+  }
+
+  useEffect(() => {
+    if (openId && focusOnOpen.current) {
+      focusOnOpen.current = false
+      headingRefs.current[openId]?.focus()
+    }
+  }, [openId])
+
+  // Deep link: /#otto (or any write-up id) opens it
+  useEffect(() => {
+    const id = window.location.hash.slice(1)
+    if (!config.projects.some(p => p.details?.id === id)) return
+    setOpenId(id)
+    requestAnimationFrame(() => document.getElementById(id)?.scrollIntoView())
+  }, [])
+
+  const cardProps = { openId, onToggle: toggle, toggleRefs }
+
+  const writeUps = (projects) => projects.filter(p => p.details).map(p => (
+    <CaseStudy
+      key={p.details.id}
+      study={p.details}
+      open={openId === p.details.id}
+      onClose={() => toggle(p.details.id)}
+      ref={el => { headingRefs.current[p.details.id] = el }}
+    />
+  ))
 
   // Split into WIP teasers and finished/public projects
   const wip     = config.projects.filter(p => p.status === 'wip')
@@ -35,9 +80,11 @@ export default function Projects() {
                   project={project}
                   index={i}
                   visible={visible}
+                  {...cardProps}
                 />
               ))}
             </div>
+            {writeUps(wip)}
           </>
         )}
 
@@ -57,9 +104,11 @@ export default function Projects() {
                   project={project}
                   index={i + wip.length}
                   visible={visible}
+                  {...cardProps}
                 />
               ))}
             </div>
+            {writeUps(released)}
           </>
         )}
 
@@ -68,7 +117,7 @@ export default function Projects() {
   )
 }
 
-function ProjectCard({ project, index, visible }) {
+function ProjectCard({ project, index, visible, openId, onToggle, toggleRefs }) {
   const isWip      = project.status === 'wip'
   const isArchived = project.status === 'archived'
 
@@ -99,7 +148,7 @@ function ProjectCard({ project, index, visible }) {
             </a>
           )}
           {isWip && (
-            <span className={styles.lockIcon} aria-label="Private repository">
+            <span className={styles.lockIcon} role="img" aria-label="Private repository">
               <LockIcon />
             </span>
           )}
@@ -107,6 +156,19 @@ function ProjectCard({ project, index, visible }) {
 
         <h3 className={styles.cardName}>{project.name}</h3>
         <p className={styles.cardDesc}>{project.desc}</p>
+
+        {project.details && (
+          <button
+            type="button"
+            ref={el => { toggleRefs.current[project.details.id] = el }}
+            className={styles.writeUpToggle}
+            aria-expanded={openId === project.details.id}
+            aria-controls={project.details.id}
+            onClick={() => onToggle(project.details.id)}
+          >
+            {openId === project.details.id ? 'Hide the write-up ↑' : 'Read the write-up ↓'}
+          </button>
+        )}
 
         <footer className={styles.cardFooter}>
           {project.stack.map(t => (

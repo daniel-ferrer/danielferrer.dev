@@ -1,15 +1,55 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { config } from '../data/config'
 import { useReveal } from '../hooks/useReveal'
 import SectionHeader from '../components/SectionHeader'
 import Tag from '../components/Tag'
+import CaseStudy from '../components/CaseStudy'
 import styles from './Experience.module.css'
 
 export default function Experience() {
   const [ref, visible] = useReveal()
   const [activeIdx, setActiveIdx] = useState(0)
+  const [studyOpen, setStudyOpen] = useState(false)
+  const toggleRef  = useRef(null)
+  const headingRef = useRef(null)
+  const focusOnOpen = useRef(false)
 
   const job = config.experience[activeIdx]
+  const study = job.caseStudy
+
+  const selectTab = (i) => {
+    setActiveIdx(i)
+    setStudyOpen(false)
+  }
+
+  const openStudy = () => {
+    focusOnOpen.current = true
+    setStudyOpen(true)
+  }
+
+  const closeStudy = () => {
+    setStudyOpen(false)
+    toggleRef.current?.focus()
+  }
+
+  // Move focus to the case study heading once it is shown
+  useEffect(() => {
+    if (studyOpen && focusOnOpen.current) {
+      focusOnOpen.current = false
+      headingRef.current?.focus()
+    }
+  }, [studyOpen])
+
+  // Deep link: /#watchtower (or any case study id) opens it
+  useEffect(() => {
+    const id = window.location.hash.slice(1)
+    if (!id) return
+    const idx = config.experience.findIndex(e => e.caseStudy?.id === id)
+    if (idx === -1) return
+    setActiveIdx(idx)
+    setStudyOpen(true)
+    requestAnimationFrame(() => document.getElementById(id)?.scrollIntoView())
+  }, [])
 
   return (
     <section id="experience" className="section-wrap">
@@ -33,7 +73,7 @@ export default function Experience() {
                 aria-selected={activeIdx === i}
                 aria-controls={`panel-${i}`}
                 className={`${styles.tab} ${activeIdx === i ? styles.tabActive : ''}`}
-                onClick={() => setActiveIdx(i)}
+                onClick={() => selectTab(i)}
               >
                 <span className={styles.tabCompany}>{exp.company}</span>
                 <span className={styles.tabPeriod}>{exp.period}</span>
@@ -66,36 +106,43 @@ export default function Experience() {
 
             <p className={styles.summary}>{job.summary}</p>
 
-            <ul className={styles.bullets}>
-              {job.bullets.map((b, i) => (
-                <li key={i}>
-                  <span className={styles.bulletDot} aria-hidden="true" />
-                  {b}
-                </li>
-              ))}
-            </ul>
-
-            {job.keyProjects?.map(p => (
-              <div key={p.name} className={styles.keyProject}>
-                <h4 className={styles.keyProjectTitle}>
-                  <span className={styles.keyProjectLabel}>Key Project</span>
-                  {p.name}
-                  {p.role && <span className={styles.keyProjectRole}> · {p.role}</span>}
-                </h4>
-                <ul className={styles.bullets}>
-                  {p.bullets.map((b, i) => (
-                    <li key={i}>
-                      <span className={styles.bulletDot} aria-hidden="true" />
-                      {b}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+            {job.bullets?.length > 0 && (
+              <ul className={styles.bullets}>
+                {job.bullets.map((b, i) => (
+                  <li key={i}>
+                    <span className={styles.bulletDot} aria-hidden="true" />
+                    {b}
+                  </li>
+                ))}
+              </ul>
+            )}
 
             <div className={styles.stack}>
               {job.stack.map(t => <Tag key={t}>{t}</Tag>)}
             </div>
+
+            {study && (
+              <>
+                <button
+                  type="button"
+                  ref={toggleRef}
+                  className={styles.studyToggle}
+                  aria-expanded={studyOpen}
+                  aria-controls={study.id}
+                  onClick={studyOpen ? closeStudy : openStudy}
+                >
+                  {studyOpen
+                    ? 'Hide the case study ↑'
+                    : `See the ${study.title.split(' — ')[0]} case study →`}
+                </button>
+                <CaseStudy
+                  study={study}
+                  open={studyOpen}
+                  onClose={closeStudy}
+                  ref={headingRef}
+                />
+              </>
+            )}
           </div>
 
         </div>
