@@ -75,6 +75,24 @@ export default function Experience() {
               ))}
             </ul>
 
+            {job.keyProjects?.map(p => (
+              <div key={p.name} className={styles.keyProject}>
+                <h4 className={styles.keyProjectTitle}>
+                  <span className={styles.keyProjectLabel}>Key Project</span>
+                  {p.name}
+                  {p.role && <span className={styles.keyProjectRole}> · {p.role}</span>}
+                </h4>
+                <ul className={styles.bullets}>
+                  {p.bullets.map((b, i) => (
+                    <li key={i}>
+                      <span className={styles.bulletDot} aria-hidden="true" />
+                      {b}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+
             <div className={styles.stack}>
               {job.stack.map(t => <Tag key={t}>{t}</Tag>)}
             </div>
