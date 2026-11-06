@@ -29,6 +29,12 @@
   gap: 0.5rem;
 }
 
+.unit {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 .group {
   display: flex;
   flex-direction: column;
@@ -72,7 +78,8 @@
 
 /* Narrow screens: stack each flow top-to-bottom, arrows pointing down */
 @media (max-width: 600px) {
-  .steps {
+  .steps,
+  .unit {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.3rem;
