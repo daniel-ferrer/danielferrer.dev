@@ -57,27 +57,8 @@ export const config = {
       role:    'Product Reliability Engineer — SRE Team Lead',
       period:  'Dec 2021 — Present',
       type:    'Full-time · Remote',
-      summary: 'Lead a team of 8 SREs embedding reliability, scalability, and operability into customer-facing SaaS products. I own high-severity incident response, observability, and AI-driven operations tooling — partnering closely with Product and Engineering to make reliability a first-class concern.',
-      bullets: [
-        'Own high-severity incident response for core product domains; improved MTTR by 40% through better alerting, automation, and standardized runbooks.',
-        'Built and standardized observability across 50+ services using metrics, logging, and distributed tracing in New Relic, giving teams actionable insight into product health.',
-        'Reduced alert fatigue by cutting non-actionable pages 50%+, aligning alerts to customer-impacting symptoms.',
-        'Designed and deployed an ML-based solution that auto-triages incoming support tickets across 100+ tickets/month.',
-        'Mentored SRE engineers on reliability best practices, setting technical direction, reviewing designs, and advocating for sustainable on-call culture across product engineering teams.',
-      ],
-      keyProjects: [
-        {
-          name: 'Watchtower — SRE Operations & Reliability Platform',
-          role: 'Core Developer',
-          bullets: [
-            'Co-built and operate an SRE-owned internal platform that centralizes operational tooling, monitoring, and incident triage for 100+ users across Engineering and Customer Service organizations.',
-            'Built an AI-assisted incident triage chat that increased ticket deflection by 80%, letting CS reps root-cause customer issues independently using an engineering knowledge base, governed data access, and an org-wide service dependency graph.',
-            'Built proactive monitoring covering 200+ batch jobs and 10 servers/agents on the enterprise scheduler, auto-paging teams on failure and cutting time-to-detect by 50%+.',
-            'Helped deliver a company-wide AI PR review layer that reviews every engineering pull request (500+/month) and learns from post-incident data to catch recurring failure patterns and security risks before production.',
-            'Reduced operational toil by giving engineering teams a shared framework for building self-service internal tools instead of running manual ops work.',
-          ],
-        },
-      ],
+      // Detail lives on the resume; the site keeps a short summary plus the case study below.
+      summary: 'I lead a team of 8 SREs at Invoice Cloud, a payments SaaS platform, owning incident response, observability, and reliability for customer-facing products. Along the way I cut MTTR by 40% and became one of three core developers of Watchtower, our internal SRE operations platform.',
       stack: ['C#', '.NET Core', 'ASP.NET Core', 'EF Core', 'Azure AI Foundry', 'Hangfire', 'Python', 'SQL', 'Azure', 'Terraform', 'New Relic', 'Application Insights', 'Jira Service Management', 'AI / LLM Tooling'],
     },
     {
