@@ -10,7 +10,7 @@ export const config = {
   // ── Identity ──────────────────────────────────────────────
   name:      'Daniel Ferrer-Sosa',
   initials:  'DFS',
-  title:     'Product Reliability Engineer · SRE Team Lead',
+  title:     'Product Reliability Engineer',
   location:  'San Antonio, TX',
   email:     'danielferrersosa@hotmail.com',
   openToWork: false,
@@ -18,7 +18,7 @@ export const config = {
   // ── Hero ──────────────────────────────────────────────────
   hero: {
     headline: 'Ship fast.\nFail safe.',
-    subHeadline: 'I lead a team of SREs embedding reliability, scalability, and operability into customer-facing SaaS — and build the AI-driven tooling that lets teams move fast without breaking things.',
+    subHeadline: 'I build reliability into customer-facing SaaS — and lead Watchtower, the AI-driven operations platform that helps teams move fast without breaking things.',
     // Typewriter cycling phrases shown beneath the sub-headline; "Currently focusing on..."
     tags: [
       'SRE · Product Reliability',
@@ -37,13 +37,13 @@ export const config = {
   // ── About ─────────────────────────────────────────────────
   about: {
     paragraphs: [
-      "I'm an SRE team lead with 5 years building full-stack .NET products and embedding reliability into customer-facing SaaS at scale at Invoice Cloud. I work where product engineering meets operational excellence — system design, incident response, observability, and AI-driven operations tooling — while still shipping production code.",
+      "I'm a Product Reliability Engineer with 5 years building full-stack .NET products and embedding reliability into customer-facing SaaS at Invoice Cloud. I lead Watchtower, our SRE operations platform, and work where product engineering meets operational excellence — system design, incident response, observability, and AI-driven operations tooling — while still shipping production code.",
       "My philosophy: reliability is not something you bolt on after shipping. I focus on translating reliability risk into business impact, and on building the tooling, processes, and culture that let teams move fast without breaking things.",
       "Outside of work, I'm building Fimsy, trying to teach my beagle Zoe to code (it's not going well), playing tons of golf, and perpetually tinkering with whatever side project has my attention this week.",
     ],
     metrics: [
       { value: '5',    unit: 'yrs',  label: 'Building .NET products & reliability' },
-      { value: '8',    unit: 'SREs', label: 'Team led'                             },
+      { value: '100+', unit: 'users', label: 'On Watchtower, across Eng & CS'       },
       { value: '40%↓', unit: 'MTTR', label: 'Via alerting, automation & runbooks'  },
       { value: '80%↓', unit: '',     label: 'Manual ticket research via AI triage' },
     ],
@@ -54,17 +54,17 @@ export const config = {
     {
       company: 'InvoiceCloud',
       url:     'https://www.invoicecloud.net',
-      role:    'Product Reliability Engineer — SRE Team Lead',
+      role:    'Product Reliability Engineer',
       period:  'Dec 2021 — Present',
       type:    'Full-time · Remote',
       // Detail lives on the resume; the site keeps a short summary plus the case study below.
-      summary: 'I lead a team of 8 SREs at Invoice Cloud, a payments SaaS platform, owning incident response, observability, and reliability for customer-facing products. I\'ve cut MTTR by 40%, and as one of three core developers of Watchtower, our internal SRE operations platform, I helped cut manual ticket research by 80%.',
+      summary: 'I own incident response, observability, and reliability for customer-facing products at Invoice Cloud, a payments SaaS platform, and have cut MTTR by 40%. I lead most of our SRE project work, including Watchtower, our internal SRE operations platform: I\'m one of its three core developers, and it has cut manual ticket research by 80%. I also mentor and coach the SRE team on best practices and a reliability-first approach to tackling and resolving problems.',
       // Expanded case study opened from the tab ("See the Watchtower case study →").
       // Keep it to the name "Watchtower" — no other internal system, customer or host names.
       caseStudy: {
         id:    'watchtower',
         title: 'Watchtower — SRE Operations & Reliability Platform',
-        meta:  'Invoice Cloud · 2026 — ongoing · Core Developer (1 of 3)',
+        meta:  'Invoice Cloud · 2026 — ongoing · Project Lead · Core Developer (1 of 3)',
         tags:  ['C#', '.NET Core', 'ASP.NET Core', 'EF Core', 'Azure AI Foundry', 'Hangfire', 'SQL', 'Azure'],
         sections: [
           {
@@ -77,7 +77,7 @@ export const config = {
           },
           {
             heading: 'My role',
-            body: "I'm one of three core developers who designed, built, and operate Watchtower, an SRE-owned platform that's now the engineering hub for 100+ users across Engineering and Customer Service.",
+            body: "I'm the project lead and one of three core developers who designed, built, and operate Watchtower, an SRE-owned platform that's now the engineering hub for 100+ users across Engineering and Customer Service.",
           },
           {
             heading: 'How it works',
@@ -299,7 +299,7 @@ export const config = {
     },
     {
       category: 'Practices',
-      items: ['Agile / Scrum', 'Sprint Management', 'Failure-Mode Analysis', 'Blameless Post-mortems', 'Code Review', 'Team Leadership', 'AI-Assisted Triage', 'Multi-Agent Orchestration'],
+      items: ['Agile / Scrum', 'Sprint Management', 'Failure-Mode Analysis', 'Blameless Post-mortems', 'Code Review', 'Technical Leadership', 'Mentoring & Coaching', 'AI-Assisted Triage', 'Multi-Agent Orchestration'],
     },
   ],
 
