@@ -82,7 +82,7 @@ export default function Contact() {
             {config.name} — {config.title}
           </p>
           <p className={styles.footerSub}>
-            {new Date().getFullYear()} · {config.location} · Built with React + Vite
+            <span suppressHydrationWarning>{new Date().getFullYear()}</span> · {config.location} · Built with React + Vite
           </p>
         </footer>
 
